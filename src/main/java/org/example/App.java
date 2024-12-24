@@ -10,10 +10,9 @@ public class App {
     private int wiseSayingSize = 0;
     // final을 사용해서, 변수를 보호. 외부에서 접근 금지. + 내부에서 접근 금지.
     private final WiseSaying[] wiseSayingList = new WiseSaying[3];
+    Scanner scanner = new Scanner(System.in);
 
     public void run() {
-
-        Scanner scanner = new Scanner(System.in);
 
         add("99% 노력과 1% 영감", "에디슨");
 
@@ -27,28 +26,33 @@ public class App {
                 break;
 
             } else if(command.equals("등록")) {
+                writeWiseSaying();
 
-                System.out.print("명언 : ");
-                String content = scanner.nextLine();
-
-                System.out.print("작가 : ");
-                String author = scanner.nextLine();
-
-                // 명언, 작가 입력 값을 매개변수로 받아줘야한다.
-                add(content, author);
-
-                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastId));
             } else if(command.equals("목록")) {
-
-                System.out.println("번호 / 작가 / 명언");
-                System.out.println("----------------------");
-
-                for(int i = 0; i < wiseSayingSize; i++) {
-                    WiseSaying wiseSaying = wiseSayingList[i];
-                    System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
-                }
+                printWiseSayingList();
             }
         }
+    }
+
+    private void printWiseSayingList() {
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("----------------------");
+
+        for(int i = 0; i < wiseSayingSize; i++) {
+            WiseSaying wiseSaying = wiseSayingList[i];
+            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
+        }
+    }
+
+    private void writeWiseSaying() {
+        System.out.print("명언 : ");
+        String content = scanner.nextLine();
+
+        System.out.print("작가 : ");
+        String author = scanner.nextLine();
+
+        add(content, author);
+        System.out.println("%d번 명언이 등록되었습니다.".formatted(lastId));
     }
 
     // method 추가. method를 추가할 때에는 class 안에.
