@@ -9,19 +9,24 @@ public class Main {
     }
 }
 
-class App{
-    public void run(){
+class App {
+
+    public void run() {
 
         Scanner scanner = new Scanner(System.in);
+        int lastId = 0;
+        int wiseSayingSize = 0;
+        WiseSaying[] wiseSayingList = new WiseSaying[3];
+
+        // 테스트 명언 데이터 1
+        WiseSaying wiseSayingTest = new WiseSaying();
+        wiseSayingTest.id = ++lastId;
+        wiseSayingTest.content = "99% 노력과 1% 영감.";
+        wiseSayingTest.author = "에디슨";
+
+        wiseSayingList[wiseSayingSize++] = wiseSayingTest;
 
         System.out.println("== 명언 앱 ==");
-        int lastNo = 1;
-        String content;
-        String author;
-
-        // WiseSaying 리스트 선언
-        List<WiseSaying> wiseSayingList = new ArrayList<>();
-
         while(true) {
             System.out.print("명령) ");
             String command = scanner.nextLine();
@@ -29,53 +34,42 @@ class App{
             if(command.equals("종료")) {
                 System.out.println("명언 앱을 종료합니다.");
                 break;
-            }
 
-            else if(command.equals("등록")) { // String일 때, '==' 가 아닌 .equals() 사용
+            } else if(command.equals("등록")) {
 
                 System.out.print("명언 : ");
-                content = scanner.nextLine(); // 입력값 가져옴. 입력값이 없으면 대기. 엔터를 입력해야 입력이 완료됨.
+                String content = scanner.nextLine();
 
                 System.out.print("작가 : ");
-                author = scanner.nextLine();
+                String author = scanner.nextLine();
 
-                // wiseSaying으로 content, author, id 모음
-                WiseSaying wiseSaying = new WiseSaying(lastNo, content, author);
-                wiseSayingList.add(wiseSaying);
+                WiseSaying wiseSaying = new WiseSaying();
 
-                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastNo)); // .formatted(); 포맷 지정. %를 붙여 문자열에 사용하면 그 위치에 변수의 값을 형식화하여 대입
+                wiseSaying.id = ++lastId;
+                wiseSaying.content = content;
+                wiseSaying.author = author;
 
-                // lasNot 증가
-                lastNo++;
-            }
+                wiseSayingList[wiseSayingSize++] = wiseSaying;
 
-            else if(command.equals("목록")) {
+                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastId));
+            } else if(command.equals("목록")) {
+
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
 
-                // 내림차순 정렬
-                List<WiseSaying> sortedList = new ArrayList<>(wiseSayingList);
-                Collections.reverse(sortedList);
-
-                // 리스트를 순회하며 출력
-                for (WiseSaying wiseSaying : sortedList) {
-                    System.out.printf("%d / %s / %s%n", wiseSaying.id, wiseSaying.author, wiseSaying.content);
+                for(int i = 0; i < wiseSayingSize; i++) {
+                    WiseSaying wiseSaying = wiseSayingList[i];
+                    System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.author, wiseSaying.content));
                 }
-                System.out.println();
+//                for(WiseSaying wiseSaying : wiseSayingList) {
+//                    System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.author, wiseSaying.content));
             }
         }
-
     }
 }
 
-class WiseSaying{
-    int id; // 해당 명언의 id
+class WiseSaying {
+    int id;
     String content;
     String author;
-
-    public WiseSaying(int id, String content, String author) {
-        this.id = id;
-        this.content = content;
-        this.author = author;
-    }
 }
