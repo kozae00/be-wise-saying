@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -8,8 +9,9 @@ public class App {
     // 인스턴스 변수는 디폴트로 private
     private int lastId = 0;
     private int wiseSayingSize = 0;
-    // final을 사용해서, 변수를 보호. 외부에서 접근 금지. + 내부에서 접근 금지.
-    private final WiseSaying[] wiseSayingList = new WiseSaying[3];
+    // private final WiseSaying[] wiseSayingList = new WiseSaying[3];
+    // ArrayList<> 는 동적배열이라 크기 지정 X
+    private final ArrayList<WiseSaying> wiseSayingList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     public void run() {
@@ -38,8 +40,8 @@ public class App {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
 
-        for(int i = 0; i < wiseSayingSize; i++) {
-            WiseSaying wiseSaying = wiseSayingList[i];
+        for(int i = 0; i < wiseSayingList.size(); i++) {
+            WiseSaying wiseSaying = wiseSayingList.get(i);
             System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
         }
     }
@@ -59,7 +61,7 @@ public class App {
     // run()에 있는 변수들을 사용할 수 없으니, 인스턴스 변수로 변경
     public void add(String content, String author) {
         WiseSaying wiseSaying = new WiseSaying(++lastId, content, author);
-        wiseSayingList[wiseSayingSize++] = wiseSaying;
+        wiseSayingList.add(wiseSaying);
     }
 
 }
