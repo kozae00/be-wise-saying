@@ -29,19 +29,18 @@ public class App {
             } else if(command.equals("목록")) {
                 printWiseSayingList();
             } else if(command.startsWith("삭제?id=")) { // contains("삭제?id=") : 문자열 "삭제?id="이 포함된 모든 문자 추출. // startsWith : "삭제?id="로 시작하는 문자 추출
-                deleteWiseSaying();
+                String strId = command.substring(6);
+                int id = Integer.parseInt(strId);
+
+                deleteWiseSaying(id);
+                System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
             }
         }
     }
 
-    private void deleteWiseSaying() {
-        System.out.println("삭제");
-        // wiseSayingList.remove(); // 명언의 번호와 배열의 index가 아무 상관이 없다...
-
-        // 1. 아이디가 1인 명언의 index를 얻는다.
-        // 2. 아이디가 1인 명언의 명언의(=참조) 값을 얻는다. // 값으로 얻으면 사용할 수 있는 범용성 증가
+    private void deleteWiseSaying(int targeId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
         for(WiseSaying wiseSaying : wiseSayingList) {
-            if(wiseSaying.getId() == 1) {
+            if(wiseSaying.getId() == targeId) {
                 wiseSayingList.remove(wiseSaying);
                 break;
             }
