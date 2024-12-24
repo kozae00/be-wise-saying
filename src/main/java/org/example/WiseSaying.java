@@ -1,6 +1,6 @@
 package org.example;
 
-class WiseSaying {
+public class WiseSaying {
     // 인스턴스 변수들은 디폴트로 private
     private int id;
     private String content;

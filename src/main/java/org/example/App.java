@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-class App {
+public class App {
 
     // 클래스에서 함수들이 공유해야 하는 변수 -> 인스턴스 변수
     // 인스턴스 변수는 디폴트로 private
