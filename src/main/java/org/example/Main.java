@@ -16,7 +16,8 @@ class App {
     // 인스턴스 변수는 디폴트로 private
     private int lastId = 0;
     private int wiseSayingSize = 0;
-    private WiseSaying[] wiseSayingList = new WiseSaying[3];
+    // final을 사용해서, 변수를 보호. 외부에서 접근 금지. + 내부에서 접근 금지.
+    private final WiseSaying[] wiseSayingList = new WiseSaying[3];
 
     public void run() {
 
