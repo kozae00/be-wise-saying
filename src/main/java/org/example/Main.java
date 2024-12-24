@@ -20,9 +20,9 @@ class App{
         int lastNo = 1;
         String content;
         // String [] contentList = new String[5]; // ArrayList를 사용하면, size가 고정값이라 사용하기가 힘듬.
-
         String author;
         // String [] authorList = new String[5];
+        WiseSaying wiseSaying = new WiseSaying();
 
         Map<Integer, Quote> map = new HashMap<>();
 
@@ -43,9 +43,14 @@ class App{
                 System.out.print("작가 : ");
                 author = scanner.nextLine();
 
+                // wiseSaying으로 content, author, id 모음
+                wiseSaying.id = lastNo++;
+                wiseSaying.content = content;
+                wiseSaying.author = author;
+
                 map.put(lastNo, new Quote(content, author)); // 데이터 저장
 
-                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastNo, lastNo++)); // .formatted(); 포맷 지정. %를 붙여 문자열에 사용하면 그 위치에 변수의 값을 형식화하여 대입
+                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastNo)); // .formatted(); 포맷 지정. %를 붙여 문자열에 사용하면 그 위치에 변수의 값을 형식화하여 대입
 
             }
 
@@ -71,4 +76,10 @@ class Quote {
         this.content = content;
         this.author = author;
     }
+}
+
+class WiseSaying{
+    int id; // 해당 명언의 id
+    String content;
+    String author;
 }
