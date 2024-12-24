@@ -36,6 +36,16 @@ public class App {
 
     private void deleteWiseSaying() {
         System.out.println("삭제");
+        // wiseSayingList.remove(); // 명언의 번호와 배열의 index가 아무 상관이 없다...
+
+        // 1. 아이디가 1인 명언의 index를 얻는다.
+        // 2. 아이디가 1인 명언의 명언의(=참조) 값을 얻는다. // 값으로 얻으면 사용할 수 있는 범용성 증가
+        for(WiseSaying wiseSaying : wiseSayingList) {
+            if(wiseSaying.getId() == 1) {
+                wiseSayingList.remove(wiseSaying);
+                break;
+            }
+        }
     }
 
     private void printWiseSayingList() {
