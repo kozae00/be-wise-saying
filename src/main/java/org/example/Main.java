@@ -18,8 +18,11 @@ class App{
 
         System.out.println("== 명언 앱 ==");
         int lastNo = 1;
-        String content = "";
-        String author = "";
+        String content;
+        // String [] contentList = new String[5]; // ArrayList를 사용하면, size가 고정값이라 사용하기가 힘듬.
+
+        String author;
+        // String [] authorList = new String[5];
 
         Map<Integer, Quote> map = new HashMap<>();
 
@@ -51,7 +54,7 @@ class App{
                 System.out.println("----------------------");
                 for(int no : map.keySet()) {
                     Quote quote = map.get(no);
-                    System.out.printf("%d / %s / %s%n", no, quote.author, quote.content);
+                    System.out.printf("%d / %s / %s%n".formatted(no, quote.author, quote.content));
                 }
                 System.out.println();
             }
