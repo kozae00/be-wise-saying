@@ -38,14 +38,39 @@ public class App {
                 } else {
                     System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
                 }
+            } else if(command.startsWith("수정?id=")) {
+                String strId = command.substring(6);
+                int id = Integer.parseInt(strId);
+
+                updateWiseSaying(id);
             }
         }
     }
 
-    private boolean deleteWiseSaying(int targeId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
+    private  WiseSaying findWiseSaying(int targetId) {
+
+        for(WiseSaying wiseSaying : wiseSayingList) {
+            if(wiseSaying.getId() == targetId) {
+                return wiseSaying;
+            }
+        }
+        return null; // 자바에서 null은 객체가 없음을 뜻함.
+    }
+
+    private void updateWiseSaying(int targetId) {
+
+        WiseSaying wiseSaying = findWiseSaying(targetId);
+
+        if(wiseSaying == null) {
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(targetId));
+            return;
+        }
+    }
+
+    private boolean deleteWiseSaying(int targetId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
         
         for(WiseSaying wiseSaying : wiseSayingList) {
-            if(wiseSaying.getId() == targeId) {
+            if(wiseSaying.getId() == targetId) {
                 wiseSayingList.remove(wiseSaying);
                 return true;
             }
