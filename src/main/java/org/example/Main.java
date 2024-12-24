@@ -39,8 +39,8 @@ class App{
 
                 map.put(lastNo, new Quote(content, author)); // 데이터 저장
 
-                System.out.println(lastNo + "번 명언이 등록되었습니다.");
-                lastNo++;
+                System.out.println("%d번 명언이 등록되었습니다.".formatted(lastNo, lastNo++)); // .formatted(); 포맷 지정. %를 붙여 문자열에 사용하면 그 위치에 변수의 값을 형식화하여 대입
+
             }
 
             else if(command.equals("목록")) {
