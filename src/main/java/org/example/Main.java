@@ -13,9 +13,10 @@ public class Main {
 class App {
 
     // 클래스에서 함수들이 공유해야 하는 변수 -> 인스턴스 변수
-    int lastId = 0;
-    int wiseSayingSize = 0;
-    WiseSaying[] wiseSayingList = new WiseSaying[3];
+    // 인스턴스 변수는 디폴트로 private
+    private int lastId = 0;
+    private int wiseSayingSize = 0;
+    private WiseSaying[] wiseSayingList = new WiseSaying[3];
 
     public void run() {
 
@@ -51,7 +52,7 @@ class App {
 
                 for(int i = 0; i < wiseSayingSize; i++) {
                     WiseSaying wiseSaying = wiseSayingList[i];
-                    System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.author, wiseSaying.content));
+                    System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
                 }
 //                for(WiseSaying wiseSaying : wiseSayingList) {
 //                    System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.author, wiseSaying.content));
@@ -63,23 +64,33 @@ class App {
     // run()에 있는 변수들을 사용할 수 없으니, 인스턴스 변수로 변경
     public void add(String content, String author) {
         WiseSaying wiseSaying = new WiseSaying(++lastId, content, author);
-//        wiseSaying.id = ++lastId;
-//        wiseSaying.content = content;
-//        wiseSaying.author = author;
         wiseSayingList[wiseSayingSize++] = wiseSaying;
     }
 
 }
 
 class WiseSaying {
-    int id;
-    String content;
-    String author;
+    // 인스턴스 변수들은 디폴트로 private
+    private int id;
+    private String content;
+    private String author;
 
     // 생성자 도입으로 코드 간결화
     WiseSaying(int id, String content, String author) {
         this.id = id;
         this.content  = content;
         this.author = author;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 }
