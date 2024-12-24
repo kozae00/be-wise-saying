@@ -1,8 +1,6 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,12 +17,10 @@ class App{
         System.out.println("== 명언 앱 ==");
         int lastNo = 1;
         String content;
-        // String [] contentList = new String[5]; // ArrayList를 사용하면, size가 고정값이라 사용하기가 힘듬.
         String author;
-        // String [] authorList = new String[5];
-        WiseSaying wiseSaying = new WiseSaying();
 
-        Map<Integer, Quote> map = new HashMap<>();
+        // WiseSaying 리스트 선언
+        List<WiseSaying> wiseSayingList = new ArrayList<>();
 
         while(true) {
             System.out.print("명령) ");
@@ -44,22 +40,26 @@ class App{
                 author = scanner.nextLine();
 
                 // wiseSaying으로 content, author, id 모음
-                wiseSaying.id = lastNo++;
-                wiseSaying.content = content;
-                wiseSaying.author = author;
-
-                map.put(lastNo, new Quote(content, author)); // 데이터 저장
+                WiseSaying wiseSaying = new WiseSaying(lastNo, content, author);
+                wiseSayingList.add(wiseSaying);
 
                 System.out.println("%d번 명언이 등록되었습니다.".formatted(lastNo)); // .formatted(); 포맷 지정. %를 붙여 문자열에 사용하면 그 위치에 변수의 값을 형식화하여 대입
 
+                // lasNot 증가
+                lastNo++;
             }
 
             else if(command.equals("목록")) {
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
-                for(int no : map.keySet()) {
-                    Quote quote = map.get(no);
-                    System.out.printf("%d / %s / %s%n".formatted(no, quote.author, quote.content));
+
+                // 내림차순 정렬
+                List<WiseSaying> sortedList = new ArrayList<>(wiseSayingList);
+                Collections.reverse(sortedList);
+
+                // 리스트를 순회하며 출력
+                for (WiseSaying wiseSaying : sortedList) {
+                    System.out.printf("%d / %s / %s%n", wiseSaying.id, wiseSaying.author, wiseSaying.content);
                 }
                 System.out.println();
             }
@@ -68,18 +68,14 @@ class App{
     }
 }
 
-class Quote {
-    String content;
-    String author;
-
-    public Quote(String content, String author) {
-        this.content = content;
-        this.author = author;
-    }
-}
-
 class WiseSaying{
     int id; // 해당 명언의 id
     String content;
     String author;
+
+    public WiseSaying(int id, String content, String author) {
+        this.id = id;
+        this.content = content;
+        this.author = author;
+    }
 }
