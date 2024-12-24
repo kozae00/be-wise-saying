@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Main {
@@ -11,12 +12,17 @@ public class Main {
 
 class App {
 
+    // 클래스에서 함수들이 공유해야 하는 변수 -> 인스턴스 변수
+    int lastId = 0;
+    int wiseSayingSize = 0;
+    WiseSaying[] wiseSayingList = new WiseSaying[3];
+
     public void run() {
 
         Scanner scanner = new Scanner(System.in);
-        int lastId = 0;
-        int wiseSayingSize = 0;
-        WiseSaying[] wiseSayingList = new WiseSaying[3];
+//        int lastId = 0;
+//        int wiseSayingSize = 0;
+//        WiseSaying[] wiseSayingList = new WiseSaying[3];
 
         // 테스트 명언 데이터 1
         WiseSaying wiseSayingTest = new WiseSaying();
@@ -43,13 +49,8 @@ class App {
                 System.out.print("작가 : ");
                 String author = scanner.nextLine();
 
-                WiseSaying wiseSaying = new WiseSaying();
-
-                wiseSaying.id = ++lastId;
-                wiseSaying.content = content;
-                wiseSaying.author = author;
-
-                wiseSayingList[wiseSayingSize++] = wiseSaying;
+                // 명언, 작가 입력 값을 매개변수로 받아줘야한다.
+                add(content, author);
 
                 System.out.println("%d번 명언이 등록되었습니다.".formatted(lastId));
             } else if(command.equals("목록")) {
@@ -66,6 +67,19 @@ class App {
             }
         }
     }
+
+    // method 추가. method를 추가할 때에는 class 안에.
+    // run()에 있는 변수들을 사용할 수 없으니, 인스턴스 변수로 변경
+    public void add(String content, String author) {
+        WiseSaying wiseSaying = new WiseSaying();
+
+        wiseSaying.id = ++lastId;
+        wiseSaying.content = content;
+        wiseSaying.author = author;
+
+        wiseSayingList[wiseSayingSize++] = wiseSaying;
+    }
+
 }
 
 class WiseSaying {
