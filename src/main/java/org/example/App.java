@@ -32,19 +32,26 @@ public class App {
                 String strId = command.substring(6);
                 int id = Integer.parseInt(strId);
 
-                deleteWiseSaying(id);
-                System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
+                boolean result = deleteWiseSaying(id);
+                if(result) {
+                    System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));    
+                } else {
+                    System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+                }
             }
         }
     }
 
-    private void deleteWiseSaying(int targeId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
+    private boolean deleteWiseSaying(int targeId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
+        
         for(WiseSaying wiseSaying : wiseSayingList) {
             if(wiseSaying.getId() == targeId) {
                 wiseSayingList.remove(wiseSaying);
-                break;
+                return true;
             }
         }
+        // 반복문안에 true가 없을 때.
+        return false;
     }
 
     private void printWiseSayingList() {
