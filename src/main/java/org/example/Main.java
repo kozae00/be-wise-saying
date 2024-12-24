@@ -20,17 +20,8 @@ class App {
     public void run() {
 
         Scanner scanner = new Scanner(System.in);
-//        int lastId = 0;
-//        int wiseSayingSize = 0;
-//        WiseSaying[] wiseSayingList = new WiseSaying[3];
 
-        // 테스트 명언 데이터 1
-        WiseSaying wiseSayingTest = new WiseSaying();
-        wiseSayingTest.id = ++lastId;
-        wiseSayingTest.content = "99% 노력과 1% 영감.";
-        wiseSayingTest.author = "에디슨";
-
-        wiseSayingList[wiseSayingSize++] = wiseSayingTest;
+        add("99% 노력과 1% 영감", "에디슨");
 
         System.out.println("== 명언 앱 ==");
         while(true) {
@@ -71,12 +62,10 @@ class App {
     // method 추가. method를 추가할 때에는 class 안에.
     // run()에 있는 변수들을 사용할 수 없으니, 인스턴스 변수로 변경
     public void add(String content, String author) {
-        WiseSaying wiseSaying = new WiseSaying();
-
-        wiseSaying.id = ++lastId;
-        wiseSaying.content = content;
-        wiseSaying.author = author;
-
+        WiseSaying wiseSaying = new WiseSaying(++lastId, content, author);
+//        wiseSaying.id = ++lastId;
+//        wiseSaying.content = content;
+//        wiseSaying.author = author;
         wiseSayingList[wiseSayingSize++] = wiseSaying;
     }
 
@@ -86,4 +75,11 @@ class WiseSaying {
     int id;
     String content;
     String author;
+
+    // 생성자 도입으로 코드 간결화
+    WiseSaying(int id, String content, String author) {
+        this.id = id;
+        this.content  = content;
+        this.author = author;
+    }
 }
