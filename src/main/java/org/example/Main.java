@@ -18,6 +18,9 @@ class App{
 
         System.out.println("== 명언 앱 ==");
         int lastNo = 1;
+        String content = "";
+        String author = "";
+
         Map<Integer, Quote> map = new HashMap<>();
 
         while(true) {
@@ -32,10 +35,10 @@ class App{
             else if(command.equals("등록")) { // String일 때, '==' 가 아닌 .equals() 사용
 
                 System.out.print("명언 : ");
-                String content = scanner.nextLine(); // 입력값 가져옴. 입력값이 없으면 대기. 엔터를 입력해야 입력이 완료됨.
+                content = scanner.nextLine(); // 입력값 가져옴. 입력값이 없으면 대기. 엔터를 입력해야 입력이 완료됨.
 
                 System.out.print("작가 : ");
-                String author = scanner.nextLine();
+                author = scanner.nextLine();
 
                 map.put(lastNo, new Quote(content, author)); // 데이터 저장
 
@@ -44,7 +47,7 @@ class App{
             }
 
             else if(command.equals("목록")) {
-                System.out.println("\n번호 / 작가 / 명언");
+                System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
                 for(int no : map.keySet()) {
                     Quote quote = map.get(no);
