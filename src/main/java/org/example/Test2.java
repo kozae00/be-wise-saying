@@ -10,5 +10,7 @@ public class Test2 {
         str = str.substring(6);
         System.out.println(str);
 
+
+
     }
 }
