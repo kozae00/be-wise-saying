@@ -48,7 +48,7 @@ class App{
 }
 ```
 
-## Class App : command
+## Class App : command(1)
 
 command를 생성해, "등록"을 입력했을 때   
 작가, 명언 입력란이 나오도록 한다. 
@@ -76,3 +76,18 @@ command를 생성해, "등록"을 입력했을 때
             // System.out.println("명령) 종료");
         }
 ```
+
+## Class App : command(2)
+
+command에서 종료 기능을 추가한다. 
+"종료"를 입력했을 때, break문을 통해 반복문을 탈출
+
+```java
+if(command.equals("종료")) {
+                System.out.println("명언 앱을 종료합니다.");
+                break;
+            }
+            else if(command.equals("등록")) { // String일 때, '==' 가 아닌 .equals() 사용
+
+```
+`
