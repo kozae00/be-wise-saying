@@ -226,3 +226,20 @@ class WiseSaying{
 }
 ```
 
+## Method 추가
+
+Method를 추가해 코드에 가독성을 키운다.
+
+```java
+// method 추가. method를 추가할 때에는 class 안에.
+// run()에 있는 변수들을 사용할 수 없으니, 인스턴스 변수로 변경
+public void add(String content, String author) {
+WiseSaying wiseSaying = new WiseSaying();
+wiseSaying.id = ++lastId;
+wiseSaying.content = content;
+wiseSaying.author = author;
+wiseSayingList[wiseSayingSize++] = wiseSaying;
+}
+}
+
+```
