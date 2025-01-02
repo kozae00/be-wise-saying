@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.wiseSaying.WiseSaying;
+
 import java.util.ArrayList;
 
 public class Test {
