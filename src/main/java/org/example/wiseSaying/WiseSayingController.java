@@ -29,7 +29,7 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String newAuthor = scanner.nextLine();
 
-        wiseSayingService.update(wiseSaying, newContent, newAuthor);
+        wiseSayingService.modify(wiseSaying, newContent, newAuthor);
         System.out.println("%d번 명언이 수정되었습니다.".formatted(targetId));
 
     }
@@ -51,7 +51,7 @@ public class WiseSayingController {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("----------------------");
 
-        ArrayList<WiseSaying> wiseSayings = wiseSayingService.findAll();
+        ArrayList<WiseSaying> wiseSayings = wiseSayingService.getItems();
 
         for (WiseSaying wiseSaying : wiseSayings.reversed()) {
             System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
@@ -65,12 +65,12 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String author = scanner.nextLine();
 
-        WiseSaying wiseSaying = wiseSayingService.add(content, author);
+        WiseSaying wiseSaying = wiseSayingService.write(content, author);
         System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
     }
 
     public void makeTestData() {
-        wiseSayingService.add("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "월트 디즈니");
-        wiseSayingService.add("현재를 사랑하라", "작자 미상");
+        wiseSayingService.write("꿈을 지녀라. 그러면 어려운 현실을 이길 수 있다.", "월트 디즈니");
+        wiseSayingService.write("현재를 사랑하라", "작자 미상");
     }
 }
