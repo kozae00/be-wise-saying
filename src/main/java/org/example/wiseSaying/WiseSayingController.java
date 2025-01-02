@@ -7,7 +7,11 @@ public class WiseSayingController {
 
     private int lastId = 0;
     private final ArrayList<WiseSaying> wiseSayingList = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public WiseSayingController(){
+        scanner = new Scanner(System.in);
+    }
 
     public WiseSaying findWiseSaying(int targetId) {
 

@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class App {
 
     private final WiseSayingController wiseSayingController;
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
 
     public App() {
-        wiseSayingController = new WiseSayingController();
+        wiseSayingController = new WiseSayingController(scanner); // 생성자를 통해 final 값 변경
+        scanner = new Scanner(System.in);
     }
-
 
     public void run() {
 
@@ -26,6 +26,13 @@ public class App {
             String command = scanner.nextLine();
 
             if (command.equals("종료")) {
+
+                // 종료할 때 설정값을 저장
+
+                // 종료할 때 명언 데이터 백업
+
+                // 종료할 때 자원 해제
+
                 System.out.println("명언 앱을 종료합니다.");
                 break;
 
