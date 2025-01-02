@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class WiseSayingService {
 
-    private final WiseSayingRepository wiseSayingMemRepository;
+    private final WiseSayingRepository wiseSayingRepository;
 
     public WiseSayingService(WiseSayingRepository wiseSayingMemRepository) {
-        this.wiseSayingMemRepository = wiseSayingMemRepository;
+        this.wiseSayingRepository = wiseSayingMemRepository;
     }
 
     public WiseSaying findById(int targetId) {
-        return wiseSayingMemRepository.findById(targetId);
+        return wiseSayingRepository.findById(targetId);
     }
 
     public void update(WiseSaying wiseSaying, String newContent, String newAuthor) {
@@ -19,18 +19,18 @@ public class WiseSayingService {
         wiseSaying.setContent(newContent);
         wiseSaying.setAuthor(newAuthor);
 
-        wiseSayingMemRepository.update(wiseSaying);
+        wiseSayingRepository.update(wiseSaying);
     }
 
     public WiseSaying add(String content, String author) {
-        return wiseSayingMemRepository.add(content, author);
+        return wiseSayingRepository.add(content, author);
     }
 
     public ArrayList<WiseSaying> findAll() {
-        return wiseSayingMemRepository.findAll();
+        return wiseSayingRepository.findAll();
     }
 
     public void remove(WiseSaying wiseSaying) {
-        wiseSayingMemRepository.remove(wiseSaying);
+        wiseSayingRepository.remove(wiseSaying);
     }
 }

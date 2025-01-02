@@ -2,7 +2,7 @@ package org.example.wiseSaying;
 
 import java.util.ArrayList;
 
-public class WiseSayingFileRepository extends WiseSayingRepository {
+public class WiseSayingFileRepository implements WiseSayingRepository {
 
     @Override
     public WiseSaying findById(int id) {
@@ -10,8 +10,8 @@ public class WiseSayingFileRepository extends WiseSayingRepository {
     }
 
     @Override
-    public WiseSaying update(WiseSaying wiseSaying) {
-        return null;
+    public void update(WiseSaying wiseSaying) {
+
     }
 
     @Override
