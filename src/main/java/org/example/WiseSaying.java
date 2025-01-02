@@ -13,6 +13,14 @@ public class WiseSaying {
         this.author = author;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    } // private 값을 들고 올 수 있도록 설계.
+
+    public void setAuthor(String author) {
+        this.author = author;
+    } // alrt + insert 키를 동시에 사용해 setter 생성
+
     public int getId() {
         return id;
     }

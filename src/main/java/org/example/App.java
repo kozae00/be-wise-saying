@@ -65,6 +65,20 @@ public class App {
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(targetId));
             return;
         }
+
+        // 수정 기능
+        System.out.println("명언(기존) : %s".formatted(wiseSaying.getContent()));
+        System.out.print("명언 : ");
+        String newContent = scanner.nextLine();
+        System.out.println("작가(기존) : %s".formatted(wiseSaying.getAuthor()));
+        System.out.print("작가 : ");
+        String newAuthor = scanner.nextLine();
+
+
+        wiseSaying.setContent(newContent);
+        wiseSaying.setAuthor(newAuthor);
+
+        System.out.println("%d번 명언이 수정되었습니다.".formatted(targetId));
     }
 
     private boolean deleteWiseSaying(int targetId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
