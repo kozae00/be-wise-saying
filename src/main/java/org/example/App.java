@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.wiseSaying.SystemController;
 import org.example.wiseSaying.WiseSayingController;
 
 import java.util.ArrayList;
@@ -8,11 +9,13 @@ import java.util.Scanner;
 public class App {
 
     private final WiseSayingController wiseSayingController;
+    private final SystemController systemController;
     private final Scanner scanner;
 
     public App() {
-        wiseSayingController = new WiseSayingController(scanner); // 생성자를 통해 final 값 변경
         scanner = new Scanner(System.in);
+        wiseSayingController = new WiseSayingController(scanner); // 생성자를 통해 final 값 변경
+        systemController = new SystemController();
     }
 
     public void run() {
@@ -33,7 +36,7 @@ public class App {
 
                 // 종료할 때 자원 해제
 
-                System.out.println("명언 앱을 종료합니다.");
+                systemController.exit();
                 break;
 
             } else if (command.equals("등록")) {

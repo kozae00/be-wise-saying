@@ -9,8 +9,8 @@ public class WiseSayingController {
     private final ArrayList<WiseSaying> wiseSayingList = new ArrayList<>();
     private final Scanner scanner;
 
-    public WiseSayingController(){
-        scanner = new Scanner(System.in);
+    public WiseSayingController(Scanner scanner){
+        this.scanner = scanner;
     }
 
     public WiseSaying findWiseSaying(int targetId) {
