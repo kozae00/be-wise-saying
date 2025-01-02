@@ -31,13 +31,7 @@ public class App {
             } else if(command.startsWith("삭제?id=")) { // contains("삭제?id=") : 문자열 "삭제?id="이 포함된 모든 문자 추출. // startsWith : "삭제?id="로 시작하는 문자 추출
                 String strId = command.substring(6);
                 int id = Integer.parseInt(strId);
-
-                boolean result = deleteWiseSaying(id);
-                if(result) {
-                    System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));    
-                } else {
-                    System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
-                }
+                deleteWiseSaying(id);
             } else if(command.startsWith("수정?id=")) {
                 String strId = command.substring(6);
                 int id = Integer.parseInt(strId);
@@ -81,16 +75,17 @@ public class App {
         System.out.println("%d번 명언이 수정되었습니다.".formatted(targetId));
     }
 
-    private boolean deleteWiseSaying(int targetId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
-        
-        for(WiseSaying wiseSaying : wiseSayingList) {
-            if(wiseSaying.getId() == targetId) {
-                wiseSayingList.remove(wiseSaying);
-                return true;
-            }
+    private void deleteWiseSaying(int targetId) { // 참고로 현재 삭제 방식은 index 방식이 아닌 변수값(id)를 직접 삭제하는 방법을 사용중이다.
+
+        WiseSaying wiseSaying = findWiseSaying(targetId);
+
+        if (wiseSaying == null) {
+            System.out.println("%d번 명언이 존재하지 않습니다".formatted(targetId));
+            return;
         }
-        // 반복문안에 true가 없을 때.
-        return false;
+
+        wiseSayingList.remove(wiseSaying);
+        System.out.println("%d번 명언이 삭제되었습니다.".formatted(targetId));
     }
 
     private void printWiseSayingList() {
