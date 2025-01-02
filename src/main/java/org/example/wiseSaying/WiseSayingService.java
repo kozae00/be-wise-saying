@@ -27,4 +27,9 @@ public class WiseSayingService {
         WiseSaying wiseSaying = new WiseSaying(id, content, author);
         wiseSayingList.add(wiseSaying);
     }
+
+
+    public ArrayList<WiseSaying> findAll() {
+        return wiseSayingList;
+    }
 }

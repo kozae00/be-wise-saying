@@ -40,13 +40,13 @@ public class App {
                 break;
 
             } else if (command.equals("등록")) {
-//                wiseSayingController.writeWiseSaying();
+                wiseSayingController.writeWiseSaying();
             } else if (command.equals("목록")) {
-//                wiseSayingController.printWiseSayingList();
+                wiseSayingController.printWiseSayingList();
             } else if (command.startsWith("삭제?id=")) {
                 String strId = command.substring(6);
                 int id = Integer.parseInt(strId);
-//                wiseSayingController.deleteWiseSaying(id);
+                wiseSayingController.deleteWiseSaying(id);
             } else if (command.startsWith("수정?id=")) {
                 String strId = command.substring(6);
                 int id = Integer.parseInt(strId);

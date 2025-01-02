@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // WiseSayingController : 홀, 고객의 요청을 받는 ...
+// 출력의 역할 수행
+
 public class WiseSayingController {
 
     private final WiseSayingService wiseSayingService;
@@ -49,14 +51,16 @@ public class WiseSayingController {
 //        System.out.println("%d번 명언이 삭제되었습니다.".formatted(targetId));
 //    }
 //
-//    public void printWiseSayingList() {
-//        System.out.println("번호 / 작가 / 명언");
-//        System.out.println("----------------------");
-//
-//        for (WiseSaying wiseSaying : wiseSayingList.reversed()) {
-//            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
-//        }
-//    }
+    public void printWiseSayingList() {
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("----------------------");
+
+        ArrayList<WiseSaying> wiseSayings = wiseSayingService.findAll();
+
+        for (WiseSaying wiseSaying : wiseSayingList.reversed()) {
+            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent()));
+        }
+    }
 //
 //    public void writeWiseSaying() {
 //        System.out.print("명언 : ");
@@ -70,6 +74,7 @@ public class WiseSayingController {
 //    }
 //
     public void add(String content, String author) {
-        wiseSayingService.add(++lastId, content, author);
+        wiseSayingService.add(content, author);
     }
+
 }
